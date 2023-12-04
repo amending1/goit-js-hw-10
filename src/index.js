@@ -60,7 +60,7 @@ function displayCatInfo(catData) {
 }
 
 function showLoader() {
-  select.style.display = 'none';
+  select.style.display = 'block';
   catInfoDiv.style.display = 'none';
   loader.style.display = 'block';
   loaderAnimation.style.display = 'block';
