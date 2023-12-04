@@ -7,10 +7,13 @@ fetchBreeds();
 // });
 const select = document.querySelector('.breed-select');
 const catInfoDiv = document.querySelector('.cat-info');
+const loader = document.querySelector('.loader');
+const errorParagraph = document.querySelector('.error');
 
 select.addEventListener('change', event => {
   const catId = select.options[select.selectedIndex].value;
   // const catId = select.selected;
+  showLoader();
 
   fetchCatByBreed(catId)
     .then(function (response) {
@@ -19,13 +22,12 @@ select.addEventListener('change', event => {
     })
     .catch(function (error) {
       console.log(error);
-      // showError(errorElement);
+      showError();
+    })
+    .finally(function () {
+      hideLoader();
     });
 });
-
-// function showError(errorElement) {
-//   errorElement.style.display = 'block';
-// }
 
 function displayCatInfo(catData) {
   catInfoDiv.innerHTML = `
@@ -34,4 +36,28 @@ function displayCatInfo(catData) {
     <p><strong>Description:</strong> ${catData.breeds[0].description}</p>
     <p><strong>Temperament:</strong> ${catData.breeds[0].temperament}</p>
   `;
+  select.style.display = 'block';
+  catInfoDiv.style.display = 'block';
+}
+
+function showLoader() {
+  select.style.display = 'none';
+  catInfoDiv.style.display = 'none';
+  loader.style.display = 'block';
+  errorParagraph.style.display = 'none';
+}
+
+function hideLoader() {
+  loader.style.display = 'none';
+}
+
+function showError() {
+  select.style.display = 'none';
+  catInfoDiv.style.display = 'none';
+  loader.style.display = 'none';
+  errorParagraph.style.display = 'block';
+}
+
+function hideError() {
+  errorParagraph.style.display = 'none';
 }
