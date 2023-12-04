@@ -10,9 +10,10 @@
         max-height: 400px;
         width: auto;
         height: auto;
+        margin-top: 20px;
       }
 
-      /* .loader {
+      .loader-animation {
         width: 48px;
         height: 48px;
         border-radius: 50%;
@@ -27,7 +28,7 @@
         animation: rotation 1s linear infinite;
       }
 
-      .loader::after {
+      .loader-animation::after {
         content: '';
         box-sizing: border-box;
         position: absolute;
@@ -47,12 +48,15 @@
         100% {
           transform: rotate(360deg);
         }
-      } */
+      }
     </style>
   </head>
   <body>
     <select class="breed-select"></select>
-    <p class="loader">Loading data, please wait...</p>
+    <p class="loader">
+      Loading data, please wait...
+      <span class="loader-animation"></span>
+    </p>
     <p class="error">Oops! Something went wrong! Try reloading the page!</p>
     <div class="cat-info"></div>
 
